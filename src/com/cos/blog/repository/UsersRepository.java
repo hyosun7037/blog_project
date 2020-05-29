@@ -10,14 +10,14 @@ import java.util.List;
 import com.cos.blog.db.DBConn;
 import com.cos.blog.model.Users;
 
-public class UserRepository {
+public class UsersRepository {
 	private static final String TAG = "UserRepository : "; // TAG 생성 (오류 발견시 용이)
-	private static UserRepository instance = new UserRepository();
+	private static UsersRepository instance = new UsersRepository();
 
-	private UserRepository() {
+	private UsersRepository() {
 	}
 
-	public static UserRepository getInstance() {
+	public static UsersRepository getInstance() {
 		return instance;
 	}
 
@@ -25,6 +25,40 @@ public class UserRepository {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
+	public Users findByUsernameAndPassword(String username, String password) {
+			final String SQL = "SELECT id, username, email, address, userProfile, userRole, createDate "
+					+ "FROM users WHERE username=? AND password=?";
+			Users user = null;
+			try {
+				conn = DBConn.getConnection(); // DB에 연결
+				pstmt = conn.prepareStatement(SQL);
+				
+				// 물음표 완성하기
+				pstmt.setString(1, username);
+				pstmt.setString(2, password);
+				
+				// if 돌려서 rs -> java오브젝트에 집어넣기
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					user = new Users(); // 무조건 null이 아니라는 의미
+					user.setId(rs.getInt("id"));
+					user.setUsername(rs.getString("username"));
+					user.setEmail(rs.getString("email"));
+					user.setAddress(rs.getString("address"));
+					user.setUserprofile(rs.getString("userProfile"));
+					user.setUserRole(rs.getString("userRole"));
+					user.setCreateDate(rs.getTimestamp("createDate"));
+				}
+				return user;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println(TAG + "findByUsernameAndPassword : " + e.getMessage());
+			} finally {
+				DBConn.close(conn, pstmt, rs);
+			}
+			return null; // 실패시
+	}
+	
 	// 회원가입
 	public int save(Users user) { // object 받기(안에 내용 다 받아야 하니까) // insert하고 싶으면 save
 		final String SQL = 

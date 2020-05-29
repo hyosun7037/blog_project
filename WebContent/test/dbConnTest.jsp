@@ -1,7 +1,7 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="com.cos.blog.db.DBConn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
 	<%
 		Connection conn = DBConn.getConnection();
 	%>
-	
+
 	<% if(conn != null) { %>
 	<h1>DB 연결 성공</h1>
 	<% }else{ %>

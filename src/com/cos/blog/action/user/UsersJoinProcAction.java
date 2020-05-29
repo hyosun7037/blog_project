@@ -7,11 +7,12 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cos.blog.action.Action;
 import com.cos.blog.model.RoleType;
 import com.cos.blog.model.Users;
-import com.cos.blog.repository.UserRepository;
+import com.cos.blog.repository.UsersRepository;
 import com.cos.blog.util.Script;
 
 // join 실행파일
@@ -52,13 +53,17 @@ public class UsersJoinProcAction implements Action{
 					.build();
 		
 		// 3. DB연결 - UserRepository의 save() 호출
-		UserRepository userRepository = UserRepository.getInstance();
+		UsersRepository userRepository = UsersRepository.getInstance();
 		int result = userRepository.save(user);
+		
+
 		
 		// 4. index.jsp 페이지로 이동
 		if(result == 1) {
-			RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
-			dis.forward(request, response);
+//			response.sendRedirect("/blog/user?cmd=login"); //거의 안씀
+//			RequestDispatcher dis = request.getRequestDispatcher("user/login.jsp");
+//			dis.forward(request, response);
+			Script.href("회원가입에 성공하였습니다.", "/blog/user?cmd=login", response);
 		}else {
 			Script.back("회원가입에 실패하였습니다.", response);
 		}
