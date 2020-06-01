@@ -49,7 +49,7 @@ public class UsersRepository {
 					user.setUserRole(rs.getString("userRole"));
 					user.setCreateDate(rs.getTimestamp("createDate"));
 				}
-				return user;
+				return user; //user 오브젝트를 만들어서 return
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println(TAG + "findByUsernameAndPassword : " + e.getMessage());

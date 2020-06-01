@@ -4,15 +4,6 @@
 
 <%@include file="include/nav.jsp"%>
 
-<%
-	Users principal = (Users)session.getAttribute("principal");
-%>
-
-<h1>
-	<% if(principal != null){ %> 
-	<%= principal.getUsername() %>
-	<%} %>
-</h1>
 
 <div class="container">
 	<!-- 부트스트랩의 규칙 : 본문은 container에 담기 -->

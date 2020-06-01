@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,6 +39,12 @@ public class UsersLoginProcAction implements Action {
 			//로그인 성공 (세션은 request가 들고 있음)
 			HttpSession session = request.getSession();
 			session.setAttribute("principal", user); // 인증 주체
+			
+			if(request.getParameter("remember") != null) {
+				//null이 아니면 무조건 on이 날라감
+				Cookie cookie = new Cookie("remember",user.getUsername());
+				response.addCookie(cookie);
+			}
 			
 			Script.href("로그인 성공", "/blog/board?cmd=home",response);
 			
