@@ -2,7 +2,7 @@
 <%@page import="com.cos.blog.dto.ResponseDto"%>
 <%@page import="java.io.BufferedReader"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	// { "username":"ssar", "content": "두번째 댓글입니다"}
 	BufferedReader br = request.getReader();
