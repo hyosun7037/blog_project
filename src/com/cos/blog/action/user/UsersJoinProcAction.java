@@ -41,6 +41,7 @@ public class UsersJoinProcAction implements Action{
 		String password = request.getParameter("password");
 		String email = request.getParameter("email"); // e-mail 형식에 대한 유효성 검사도 시행해줘야함
 		String address = request.getParameter("address");
+		String roadFullAddr = request.getParameter("roadFullAddr");
 		String userRole = RoleType.USER.toString(); // 마음대로 넣는 걸 방지하기 위해 enum으로 설정
 		
 		// 2. User 오브젝트 변환
