@@ -6,7 +6,9 @@
 
 	/*
 	HTTPRequest 중 body로 넘어온 parameter를 확인하기 위해서는
-	getInputStrean()이나 getReader()를 사용
+	getInputStream()이나 getReader()를 사용
+	getParameter는 네가지 다 받을 수 있음
+	버퍼는 get 빼고
 	*/
 	BufferedReader br = request.getReader();
 

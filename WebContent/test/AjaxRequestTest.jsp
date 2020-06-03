@@ -17,7 +17,7 @@ div {
 </head>
 <body>
 	<div id="reply-box">
-		<div id="reply-1">첫번째 댓글입니다.</div>
+	<div id="reply-1">첫번째 댓글입니다.</div>
 	</div>
 	<input type="text" id="tf-reply" />
 	<br />
@@ -41,11 +41,10 @@ div {
 				contentType : 'application/json; charset=utf-8',
 				dataType : 'json' // 받을 데이터를 어떻게 파싱할까를 정의 text, json
 			}).done(
-					function(result) {
+				function(result) {
 						console.log(result);
-						$('#reply-box').prepend(
-								"<div id='reply-"+num+"'>" + a + "</div>");
-					}).fail(function(error) {
+						$('#reply-box').prepend("<div id='reply-"+num+"'>" + a + "</div>");
+			}).fail(function(error) {
 				console.log("에러남");
 				console.log(error);
 			});

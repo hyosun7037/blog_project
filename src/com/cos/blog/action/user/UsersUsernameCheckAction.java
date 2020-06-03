@@ -13,10 +13,17 @@ import com.cos.blog.repository.UsersRepository;
 public class UsersUsernameCheckAction implements Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String username = request.getParameter("username"); 
+		PrintWriter out = response.getWriter(); // =BufferedWriter 
+		
+		// result가 빈칸이면 2로 리턴
+		if(username.equals("")) {
+			out.print(2);
+			return;
+		}
+		
 		UsersRepository usersRepository = UsersRepository.getInstance();
 		int result = usersRepository.findByUsername(username);
-		PrintWriter out = response.getWriter();
 		out.print(result); // /n이 들어오면 비교가 힘드니까 print 사용
 	}
 }
