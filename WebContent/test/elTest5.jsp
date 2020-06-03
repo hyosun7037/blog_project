@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="elTest6.jsp?mone=10000">전송</a>
+	<a href="elTest6.jsp?money=10000">전송</a>
 </body>
 </html>

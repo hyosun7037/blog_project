@@ -10,7 +10,8 @@
 	<H1>elTest6.jsp</H1>
 <%
 	//10000
-	String money = request.getParameter("money");
+	String money = request.getParameter("money"); 
+	//get, post 다 parameter로 받을 수 있고, 다만 get만 버퍼로 받지 X
 %>	
 <script>
 	var num = 100;

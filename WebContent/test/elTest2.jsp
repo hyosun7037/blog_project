@@ -13,7 +13,7 @@
 <body>
 	<h1>elTest2.jsp 파일</h1>
 	<hr/>
-	유저네임 : ${username}<br/>
-	패스워드 : ${sessionScope.password}<br/>
+	유저네임 : ${username}<br/> <!-- request 생략 -->
+	패스워드 : ${sessionScope.username}<br/>
 </body>
 </html>
