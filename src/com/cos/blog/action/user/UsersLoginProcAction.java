@@ -41,8 +41,17 @@ public class UsersLoginProcAction implements Action {
 			session.setAttribute("principal", user); // 인증 주체
 			
 			if(request.getParameter("remember") != null) {
+
+				// key => Set-Cookie
+				// value => remember=ssar
+				
 				//null이 아니면 무조건 on이 날라감
-				Cookie cookie = new Cookie("remember",user.getUsername());
+				Cookie cookie = new Cookie("remember", user.getUsername());
+				response.addCookie(cookie);
+				//reponse.setHeader("Ser-Cookie", "remeber=ssar");
+			}else {
+				Cookie cookie = new Cookie("remember", "");
+				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}
 			

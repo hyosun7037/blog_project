@@ -27,16 +27,15 @@ function init(){
 		document.form.submit(); //form안의 데이터가 넘어감 / submit()을 하면 action이 실행
 	}else{
 		//opener 내장함수, 여기서 opner는 sample.jsp
-		opener.jusoCallBack("<%=roadFullAddr%>
-	");
+		opener.jusoCallBack("<%=roadFullAddr%>");
 			window.close();
 		}
 	}
 </script>
 <body onload="init()">
 	<form id="form" name="form" method="post">
-		<input type="hidden" id="confmKey" name="confmKey" value="" /> <input
-			type="hidden" id="returnUrl" name="returnUrl" value="" />
+		<input type="hidden" id="confmKey" name="confmKey" value="" /> 
+		<input type="hidden" id="returnUrl" name="returnUrl" value="" />
 		<!-- 자기주소 -->
 		<input type="hidden" id="resultType" name="resultType" value="" />
 	</form>

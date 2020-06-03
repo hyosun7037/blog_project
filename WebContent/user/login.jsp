@@ -4,10 +4,10 @@
 <%@include file="../include/nav.jsp"%>
 
 <%
-	String remember = (String) request.getAttribute("remember");
-	if(remember == null){
-		remember=""; //초기화 remember를 무조건 output 시키기 위해서
-	}
+// 	String remember = (String) request.getAttribute("remember");
+// 	if(remember == null){
+// 		remember=""; //초기화 remember를 무조건 output 시키기 위해서
+// 	}
 %>
 
 <div class="container">
@@ -16,7 +16,7 @@
 		class="was-validated">
 		<div class="form-group">
 			<label for="username">Username:</label> <input type="text"
-				value="<%=remember %>" class="form-control" id="username"
+				value="${cookie.remember.value}" class="form-control" id="username"
 				placeholder="Enter username" name="username" required>
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>
@@ -31,11 +31,12 @@
 		</div>
 
 		<div class="form-group form-check">
-			<label class="form-check-label"> <input
-				class="form-check-input" type="checkbox" name="remember" required>
-				아이디 저장
-				<div class="valid-feedback">Valid.</div>
-				<div class="invalid-feedback">Check this checkbox to continue.</div>
+			<label class="form-check-label"> 
+<!-- 				<input class="form-check-input" type="checkbox" name="remember" required> -->
+<!-- 				아이디 저장 -->
+<!-- 				<div class="valid-feedback">Valid.</div> -->
+<!-- 				<div class="invalid-feedback">Check this checkbox to continue.</div> -->
+			<input class="form-check-input" type="checkbox" name="remember"> 아이디 저장
 			</label>
 		</div>
 		<button type="submit" class="btn btn-primary">로그인</button>
