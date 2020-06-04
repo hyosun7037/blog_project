@@ -35,6 +35,7 @@ public class BoardWriteProcAction implements Action{
 				request.getParameter("content").equals("")||
 				request.getParameter("content") == null
 		) {
+			Script.back("다시 입력해주세요", response);
 			return;
 		}
 		
@@ -47,6 +48,7 @@ public class BoardWriteProcAction implements Action{
 					.userId(principal.getId())
 					.title(title)
 					.content(content)
+					.readCount(0)
 					.build();
 		
 		//4. BoardRespository 연결해서 save(board) 함수 호출
