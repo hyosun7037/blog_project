@@ -2,8 +2,6 @@
 
 <!-- jstl 태그 라이브러리가 충돌날 수도 있음 -->
 <%@ include file="../include/nav.jsp"%>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <%@ include file="../include/authentication.jsp"%>
 
 <!-- board안에 들어가는  이름과 같아야함 -->

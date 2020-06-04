@@ -30,10 +30,10 @@ public class BoardWriteProcAction implements Action{
 		//1. request에 title값과 content값 null인지 공백인지 확인
 		if
 		(
-				request.getParameter("title").equals("")|| // 공백
 				request.getParameter("title") == null|| // 값이 X
-				request.getParameter("content").equals("")||
-				request.getParameter("content") == null
+				request.getParameter("title").equals("")|| // 공백
+				request.getParameter("content") == null ||
+				request.getParameter("content").equals("")
 		) {
 			Script.back("다시 입력해주세요", response);
 			return;
