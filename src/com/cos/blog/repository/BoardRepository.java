@@ -28,12 +28,20 @@ public class BoardRepository {
 
 	// 글쓰기
 	public int save(Board board) { // object 받기(안에 내용 다 받아야 하니까)
-		final String SQL = "";
+		final String SQL = "INSERT INTO board(id, userid, title, content, createDate) "
+				+ "VALUES(BOARD_SEQ.nextval,?,?,?,sysdate)";
 		try {
 			conn = DBConn.getConnection(); // DB에 연결
 			pstmt = conn.prepareStatement(SQL);
 			// 물음표 완성하기
+			
+			pstmt.setInt(1, board.getUserId());
+			pstmt.setString(2, board.getTitle());
+			pstmt.setString(3, board.getContent());
+//			pstmt.setInt(3, board.getReadCount());
+			
 			return pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println(TAG + "save : " + e.getMessage());
