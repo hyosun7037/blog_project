@@ -14,7 +14,9 @@
 		그냥 가면 데이터가 없이 이동만 하게 됨, 데이터베이스에서 select해서 들고와야 함 -> board.id 
 		동기화를 시킬려면 항상 select를 시켜야함 / onclick으로 쓰는 것보다 더 편리함 -->
 		<a href="/blog/board?cmd=update&id=${dto.board.id}" class="btn btn-warning">수정</a>
-		<button class="btn btn-danger">삭제</button>
+		
+		<!-- post니까 onclick으로 처리 -->
+		<button class="btn btn-danger" onclick="deleteById(${dto.board.id})">삭제</button>
 	</c:if>
 	
 	<br />
@@ -31,5 +33,29 @@
 	</div>
 
 </div>
+
+<script>
+	function deleteById(boardId){
+		$.ajax({
+			type:"POST", // 지금은 post로 통일, 원래 get, post, put, delete사용 (추후에 REST API 할 때)
+			url:"/blog/board?cmd=delete&id=" +boardId,
+			dataType : "text"
+		}).done(function(result){
+			console.log(result);
+			if(result==1){
+				alert("삭제 성공");
+				location.href="/blog/index.jsp"
+			}else{
+				alert("삭제 실패");
+			}
+		}).fail(function(error){
+			console.log(error);
+			console.log(error.responseText);
+			console.log(error.status);
+			alert("서버 오류");
+		});
+		
+		}
+</script>
 
 <%@ include file="../include/footer.jsp"%>

@@ -54,11 +54,15 @@ public class BoardRepository {
 
 	// 회원정보 수정
 	public int update(Board board) { // object 받기(안에 내용 다 받아야 하니까)
-		final String SQL = "";
+		final String SQL = "UPDATE board SET title = ?, content= ? WHERE id = ?";
 		try {
 			conn = DBConn.getConnection(); // DB에 연결
 			pstmt = conn.prepareStatement(SQL);
 			// 물음표 완성하기
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getId());
+			
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,11 +75,12 @@ public class BoardRepository {
 
 	// 회원정보 삭제
 	public int deleteById(int id) { // object 받기(안에 내용 다 받아야 하니까)
-		final String SQL = "";
+		final String SQL = "DELETE FROM board WHERE id = ?";
 		try {
 			conn = DBConn.getConnection(); // DB에 연결
 			pstmt = conn.prepareStatement(SQL);
 			// 물음표 완성하기
+			pstmt.setInt(1, id);
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

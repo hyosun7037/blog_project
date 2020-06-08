@@ -6,6 +6,34 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Script {
 	
+	public static void outText(String msg, HttpServletResponse response) { // 뒤로가기
+		try {
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/plain; charser=utf-8");
+			
+			out.print(msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	public static void outJson(String msg, HttpServletResponse response) { // 뒤로가기
+		try {
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
+			response.setContentType("aplication/json; charser=utf-8");
+			
+			out.print(msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
 	public static void getMessage(String msg, HttpServletResponse response) { // 뒤로가기
 		try {
 			response.setCharacterEncoding("utf-8");
