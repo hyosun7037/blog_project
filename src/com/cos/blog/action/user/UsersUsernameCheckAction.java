@@ -25,7 +25,6 @@ public class UsersUsernameCheckAction implements Action{
 		
 		UsersRepository usersRepository = UsersRepository.getInstance();
 		int result = usersRepository.findByUsername(username);
-//		out.print(result); // /n이 들어오면 비교가 힘드니까 print 사용
 		Script.outText(result+"", response); //+""문자로 리턴
 	}
 }

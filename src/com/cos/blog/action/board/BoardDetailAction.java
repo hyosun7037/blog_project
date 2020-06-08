@@ -14,7 +14,8 @@ import com.cos.blog.util.Script;
 
 public class BoardDetailAction implements Action{
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		if(
 				request.getParameter("id") == null ||
 				request.getParameter("id").equals("")

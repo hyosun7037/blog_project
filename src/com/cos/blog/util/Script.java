@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Script {
 	
-	public static void outText(String msg, HttpServletResponse response) { // 뒤로가기
+	public static void outText(String msg, HttpServletResponse response) { 
 		try {
 			response.setCharacterEncoding("utf-8");
 			PrintWriter out = response.getWriter();
@@ -20,7 +20,7 @@ public class Script {
 	}
 	
 	
-	public static void outJson(String msg, HttpServletResponse response) { // 뒤로가기
+	public static void outJson(String msg, HttpServletResponse response) {
 		try {
 			response.setCharacterEncoding("utf-8");
 			PrintWriter out = response.getWriter();
@@ -34,7 +34,7 @@ public class Script {
 	}
 	
 	
-	public static void getMessage(String msg, HttpServletResponse response) { // 뒤로가기
+	public static void getMessage(String msg, HttpServletResponse response) { 
 		try {
 			response.setCharacterEncoding("utf-8");
 			PrintWriter out = response.getWriter();
