@@ -17,6 +17,11 @@
 			</div>
 		</div>
 	</c:forEach>
+
+	<ul class="pagination justify-content-center"> <!-- 가운데 정렬 -->
+		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+		<li class="page-item"><a class="page-link" href="#">Next</a></li>
+	</ul>
 </div>
 
 

@@ -91,6 +91,11 @@ public class BoardRepository {
 		return -1; // 실패시
 	}
 
+	
+	
+	///// 여기 페이지 나누는 쿼리 추가
+	
+	
 	// 회원정보 다 찾기
 	public List<Board> findAll() { // object 받기(안에 내용 다 받아야 하니까)
 		final String SQL = "SELECT * FROM board ORDER BY id DESC";

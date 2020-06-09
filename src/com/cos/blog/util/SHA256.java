@@ -7,13 +7,13 @@ import java.security.MessageDigest;
 // 해쉬암호 : SHA256, HMAC256
 // 암호화 + 복호화 : Base64
 public class SHA256 {
-	private final static String msalt = "코스";
+	private final static String mSalt = "코스";
     
     public static String encodeSha256(String source) {
         String result = "";
         
         byte[] a = source.getBytes();
-        byte[] salt = msalt.getBytes();
+        byte[] salt = mSalt.getBytes();
         byte[] bytes = new byte[a.length + salt.length];
         
         System.arraycopy(a, 0, bytes, 0, a.length);

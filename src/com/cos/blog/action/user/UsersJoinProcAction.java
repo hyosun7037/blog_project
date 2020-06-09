@@ -39,8 +39,8 @@ public class UsersJoinProcAction implements Action{
 		
 		// 1. parameter 받기 (X-www.form-urlencoded 라는 MIME 타입 key=value)
 		String username = request.getParameter("username");
-		String rawpassword = request.getParameter("password");
-		String password = SHA256.encodeSha256(rawpassword);
+		String rawPassword = request.getParameter("password");
+		String password = SHA256.encodeSha256(rawPassword);
 		String email = request.getParameter("email"); // e-mail 형식에 대한 유효성 검사도 시행해줘야함
 		String address = request.getParameter("address");
 //		String roadFullAddr = request.getParameter("roadFullAddr");

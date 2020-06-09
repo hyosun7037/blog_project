@@ -31,10 +31,8 @@ public class UsersLoginProcAction implements Action {
 			return; // 위의 사항 중 하나라도 해당되면 아예 실행이 안되게 설정
 		}
 		String username = request.getParameter("username");
-		String rawpassword = request.getParameter("password");
-		
-		
-		String password = SHA256.encodeSha256(rawpassword);
+		String rawPassword = request.getParameter("password");
+		String password = SHA256.encodeSha256(rawPassword);
 		UsersRepository userRepository = UsersRepository.getInstance();
 		Users user = userRepository.findByUsernameAndPassword(username, password);
 		

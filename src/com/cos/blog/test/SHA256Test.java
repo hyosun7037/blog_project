@@ -35,7 +35,7 @@ public class SHA256Test {
 			
 			StringBuffer sb = new StringBuffer();
 			for(int i = 0; i<byteData.length; i++) {
-				sb.append(Integer.toHexString(byteData[i] & 0xFF)+256);
+				sb.append(Integer.toHexString((byteData[i] & 0xFF)+256)).substring(1);
 			}
 			System.out.println();
 			result = sb.toString();

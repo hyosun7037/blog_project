@@ -27,6 +27,9 @@ public class BoardHomeAction implements Action {
 //			board.setContent(preview);
 //		}
 		
+		//3건만 페이징하여 가져오기
+		
+		
 		for (Board board : boards) {
 			String preview = HtmlParser.getContentPreview(board.getContent());
 			board.setContent(preview);
