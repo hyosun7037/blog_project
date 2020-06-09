@@ -33,7 +33,7 @@
 			<button type="button" class="btn btn-info" onClick="goPopup();">검색</button>
 			<input type="text"
 				class="form-control" id="address" placeholder="Enter address"
-				name="roadFullAddr" required readonly>
+				name="address" required readonly>
 				
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>

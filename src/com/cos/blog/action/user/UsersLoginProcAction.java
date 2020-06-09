@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.cos.blog.action.Action;
 import com.cos.blog.model.Users;
 import com.cos.blog.repository.UsersRepository;
+import com.cos.blog.util.SHA256;
 import com.cos.blog.util.Script;
 
 public class UsersLoginProcAction implements Action {
@@ -30,8 +31,10 @@ public class UsersLoginProcAction implements Action {
 			return; // 위의 사항 중 하나라도 해당되면 아예 실행이 안되게 설정
 		}
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String rawpassword = request.getParameter("password");
 		
+		
+		String password = SHA256.encodeSha256(rawpassword);
 		UsersRepository userRepository = UsersRepository.getInstance();
 		Users user = userRepository.findByUsernameAndPassword(username, password);
 		
