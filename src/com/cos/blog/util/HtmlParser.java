@@ -6,6 +6,41 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class HtmlParser {
+	
+	public static String getContentYoutude(String content) {
+		Document doc = Jsoup.parse(content); // html 구조를 만들어준다.Document 타입이 html
+		System.out.println("doc =" + doc);
+		Elements aTags = doc.select("a"); //배열로 구성
+		System.out.println("aTags.get(0) =" + aTags.get(0));
+		// https://youtu.be/TgOu00Mf3kI
+		// https://www.youtube.com/watch?v=yqtCGojXEpM
+
+		for(Element aTag : aTags) { //aTag = aTags.get(0)
+			String href = aTag.attr("href"); //a태그 안에 있는 속성값을 저장
+			System.out.println(href);
+			String youtubeId = null;
+			if(href != null) {
+				if(href.contains("youtu.be")) {
+					String[] hrefArr = href.split("be/"); //Split은 무조건 배열, "be/"가 사라지고 나머지는 배열로
+					youtubeId = hrefArr[1];
+					System.out.println(youtubeId);
+				}else if(href.contains("youtube.com")) {
+					String[] hrefArr = href.split("v=");
+					youtubeId = hrefArr[1];
+					System.out.println(youtubeId);
+				}
+				
+				System.out.println("JSOUP 파싱 : Youtube : " + youtubeId);
+				String video = "<br /><iframe src = 'http://www.youtube.com/embed/"+youtubeId+" 'width='700px' height='400px' frameborder='0' allowfullscreen></iframe>";
+//				String video = "<br /><iframe width=\"657\" height=\"370\" src=\"https://www.youtube.com/embed/"+ youtubeId +"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+				System.out.println("video :" +video);
+				aTag.after(video); // aTag 뒤에다가 매개변수 video를 넣어줌
+				System.out.println(doc);
+			}
+		}
+		return doc.toString();
+	}
+	
 	public static String getContentPreview(String content) {
 		
 		Document doc = Jsoup.parse(content);
