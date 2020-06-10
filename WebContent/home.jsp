@@ -5,6 +5,15 @@
 <%@include file="include/nav.jsp"%>
 
 <div class="container">
+
+	<div class="col-md-12 m-2">
+		<form class="form-inline justify-content-end" action="/blog/board?cmd=search"  method="get">
+	    	<input class="form-control mr-sm-2" type="hidden" name="cmd" value="search">
+	    	<input class="form-control mr-sm-2" type="hidden" name="page" value="0">
+	    	<input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Search">
+	    	<button class="btn btn-primary" type="submit">검색</button>
+	  </form>
+	</div>
 	<c:forEach var="board" items="${boards}">
 		<!-- 부트스트랩의 규칙 : 본문은 container에 담기 -->
 		<div class="card m-2" style="width: 100%">

@@ -112,6 +112,33 @@ public class BoardRepository {
 	}
 
 	
+	
+	
+	public int count(String keyword) { // object 받기(안에 내용 다 받아야 하니까)
+		final String SQL = "SELECT count(*) FROM board WHERE title like ? OR content like ? ";
+		try {
+			conn = DBConn.getConnection(); // DB에 연결
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(2, "%"+keyword+"%");
+			// 물음표 완성하기
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(TAG + "keyword : " + e.getMessage());
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return -1; // 실패시
+	}
+	
+	
+	
+	
+	
 	//특정 값까지만 넘어가는 페이징
 	public int count() { // object 받기(안에 내용 다 받아야 하니까)
 		final String SQL = "SELECT count(*) FROM board";
@@ -131,6 +158,52 @@ public class BoardRepository {
 		}
 		return -1; // 실패시
 	}
+	
+	
+	/// 검색
+	public List<Board> findAll(int page, String keyword) { // object 받기(안에 내용 다 받아야 하니까)
+		StringBuilder sb = new StringBuilder(); // 스트링 배열로 받는다.String으로 받으면 너무 길어지기 때문에 
+		sb.append("SELECT /*+ INDEX_DESC(BOARD SYS_C008316)*/id, ");
+		sb.append("userId, title, content, readCount, createDate ");
+		sb.append("FROM board ");
+		sb.append("WHERE title like ? OR content like ? "); // 여기서는 % 안먹음
+		sb.append("OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY");
+		System.out.println(sb.toString()); // 테스트용
+		
+		final String SQL = sb.toString();
+		List<Board> boards = new ArrayList<>();
+		
+		try {
+			conn = DBConn.getConnection(); // DB에 연결
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, "%"+keyword+"%"); // like의 %넣기
+			pstmt.setString(2, "%"+keyword+"%"); // like의 %넣기
+			pstmt.setInt(3, page*3);
+			// while 돌려서 rs -> java오브젝트에 집어넣기
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Board board = new Board(
+						rs.getInt("id"),
+						rs.getInt("userId"),
+						rs.getString("title"),
+						rs.getString("content"),
+						rs.getInt("readCount"),
+						rs.getTimestamp("createDate")
+						);
+				boards.add(board);
+						
+			}
+			return boards;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(TAG + "findAll(page, keyword) : " + e.getMessage());
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return null; // 실패시
+	}
+	
+	
 	
 
 	
