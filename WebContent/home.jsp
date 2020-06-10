@@ -15,7 +15,7 @@
 	    	<button class="btn btn-primary" type="submit">검색</button>
 	  </form>
 	</div>
-	<c:forEach var="board" items="${boards}">
+	<c:forEach var="board" items="${boards}"> <!-- 객체가 들어있는 리스트를  출력하는 방법-->
 		<!-- 부트스트랩의 규칙 : 본문은 container에 담기 -->
 		<div class="card m-2" style="width: 100%">
 			<div class="card-body">
