@@ -112,6 +112,26 @@ public class BoardRepository {
 	}
 
 	
+	//특정 값까지만 넘어가는 페이징
+	public int count() { // object 받기(안에 내용 다 받아야 하니까)
+		final String SQL = "SELECT count(*) FROM board";
+		try {
+			conn = DBConn.getConnection(); // DB에 연결
+			pstmt = conn.prepareStatement(SQL);
+			// 물음표 완성하기
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(TAG + "count : " + e.getMessage());
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return -1; // 실패시
+	}
+	
 
 	
 	///// 여기 페이지 나누는 쿼리 추가
