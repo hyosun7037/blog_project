@@ -4,6 +4,7 @@
 
 <%@include file="include/nav.jsp"%>
 
+
 <div class="container">
 
 	<div class="col-md-12 m-2">
@@ -27,28 +28,47 @@
 		</div>
 	</c:forEach>
 
-	<ul class="pagination justify-content-center"> <!-- 가운데 정렬 -->
-		<c:choose>
-			<c:when test = "${param.page == 0}">
-				<li class="page-item disabled"><a class="page-link" href="/blog/board?cmd=home&page=${param.page-1}">Previous</a></li>
+
+
+<!-- 붙여넣기  -->
+		<c:choose> 
+			<c:when test = "${empty param.keyword}">
+				<c:set var = "pagePrev" value = "/blog/board?cmd=home&page=${param.page-1}" />
+				<c:set var = "pageNext" value = "/blog/board?cmd=home&page=${param.page+1}" />
 			</c:when>
 			
 			<c:otherwise>
-				<li class="page-item"><a class="page-link" href="/blog/board?cmd=home&page=${param.page-1}">Previous</a></li>
+				<c:set var = "pagePrev" value = "/blog/board?cmd=search&page=${param.page-1}&keyword=${param.keyword}" />
+				<c:set var = "pageNext" value = "/blog/board?cmd=search&page=${param.page+1}&keyword=${param.keyword}" />
+			</c:otherwise>
+		</c:choose>
+		
+
+
+
+	<ul class="pagination justify-content-center"> <!-- 가운데 정렬 -->
+		<c:choose>
+			<c:when test = "${param.page == 0}">
+				<li class="page-item disabled"><a class="page-link" href="${pageScope.pagePrev}">Previous</a></li>
+			</c:when>
+			
+			<c:otherwise>
+				<li class="page-item"><a class="page-link" href="${pageScope.pagePrev}">Previous</a></li>
 			</c:otherwise>
 		</c:choose>
 		
 		<c:choose>
-			<c:when test = "${isLast}">
-				<li class="page-item disabled"><a class="page-link" href="/blog/board?cmd=home&page=${param.page+1}">Next</a></li>
+			<c:when test = "${lastPage==param.page}">
+				<li class="page-item disabled"><a class="page-link" href="${pageScope.pageNext}">Next</a></li>
 			</c:when>
 			
 			<c:otherwise>
-				<li class="page-item"><a class="page-link" href="/blog/board?cmd=home&page=${param.page+1}">Next</a></li>
+				<li class="page-item"><a class="page-link" href="${pageScope.pageNext}">Next</a></li>
 			</c:otherwise>
 		</c:choose>
 	</ul>
 </div>
+
 
 
 <%@include file="include/footer.jsp"%>
