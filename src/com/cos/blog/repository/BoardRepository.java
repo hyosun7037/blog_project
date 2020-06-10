@@ -52,6 +52,26 @@ public class BoardRepository {
 		return -1; // 실패시
 	}
 
+	
+	//조회수 증가
+	public int updateReadCount(int id) { // object 받기(안에 내용 다 받아야 하니까)
+		final String SQL = "UPDATE board SET readCount = readCount + 1 WHERE id = ?";
+		try {
+			conn = DBConn.getConnection(); // DB에 연결
+			pstmt = conn.prepareStatement(SQL);
+			// 물음표 완성하기
+			pstmt.setInt(1, id);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(TAG + "updateReadCount : " + e.getMessage());
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+		return -1; // 실패시
+	}
+	
+	
 	// 회원정보 수정
 	public int update(Board board) { // object 받기(안에 내용 다 받아야 하니까)
 		final String SQL = "UPDATE board SET title = ?, content= ? WHERE id = ?";
@@ -92,11 +112,12 @@ public class BoardRepository {
 	}
 
 	
+
 	
 	///// 여기 페이지 나누는 쿼리 추가
 	public List<Board> findAll(int page) { // object 받기(안에 내용 다 받아야 하니까)
 		StringBuilder sb = new StringBuilder(); // 스트링 배열로 받는다.String으로 받으면 너무 길어지기 때문에 
-		sb.append("SELECT /*+ INDEX_DESC(BOARD SYS_C008316)*/id,");
+		sb.append("SELECT /*+ INDEX_DESC(BOARD SYS_C008316)*/id, ");
 		sb.append("userId, title, content, readCount, createDate ");
 		sb.append("FROM board ");
 		sb.append("OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY");

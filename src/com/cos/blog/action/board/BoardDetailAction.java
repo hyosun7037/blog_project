@@ -18,16 +18,25 @@ public class BoardDetailAction implements Action{
 	public void execute(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		if(
-				request.getParameter("id") == null ||
-				request.getParameter("id").equals("")
+				
+				request.getParameter("id").equals("")||
+				request.getParameter("id") == null 
 				) {
 			Script.back("잘못된 접근입니다.", response);
 			return;
 		}
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		BoardRepository boardRepository =
-				BoardRepository.getInstance();
+		BoardRepository boardRepository = BoardRepository.getInstance();
+	
+//		 조회수 증가가 상세보기가 되기 전에 실행 되도록
+		int result = boardRepository.updateReadCount(id);
+		
+		if(result != 1) {
+			Script.back("서버오류", response);
+			return;
+		}
+		
 		DetailResponseDto dto = boardRepository.findById(id);
 		
 		if(dto != null) {

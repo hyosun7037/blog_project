@@ -11,7 +11,7 @@ public class HtmlParser {
 		Document doc = Jsoup.parse(content); // html 구조를 만들어준다.Document 타입이 html
 		System.out.println("doc =" + doc);
 		Elements aTags = doc.select("a"); //배열로 구성
-		System.out.println("aTags.get(0) =" + aTags.get(0));
+		//System.out.println("aTags.get(0) =" + aTags.get(0));
 		// https://youtu.be/TgOu00Mf3kI
 		// https://www.youtube.com/watch?v=yqtCGojXEpM
 
