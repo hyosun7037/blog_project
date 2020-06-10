@@ -52,6 +52,8 @@ CREATE TABLE reply(
     foreign key (boardId) references board (id) on delete cascade
 );
 
+![blog](https://postfiles.pstatic.net/MjAyMDA2MTBfMjc3/MDAxNTkxNzY4NDA3ODcy.MBPk1ae5xPHbYhLX41BYxmsXtr6ESVymjF_TMazU4ywg.qws4P8kRb8NOVOqZJnZn5MzyiVKqPmFbTE1v_URNFZ8g.PNG.haha7037/image.png?type=w966)
+
 ```
 
 ## 시퀀스
