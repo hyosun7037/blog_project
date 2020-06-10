@@ -16,19 +16,13 @@ import com.cos.blog.util.HtmlParser;
 public class BoardHomeAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int page = Integer.parseInt(request.getParameter("page"));
+		
 		//1. DB 연결해서 Board 목록 다 불러와서
 		BoardRepository boardRepository = BoardRepository.getInstance();
-		List<Board> boards = boardRepository.findAll();
-		
-		// 본문 짧게 가공하기
-//		for(Board board : boards) {
-//			String preview = board.getContent();
-//			preview = preview.substring(0, preview.length())+"...";
-//			board.setContent(preview);
-//		}
-		
-		//3건만 페이징하여 가져오기
-		
+		List<Board> boards = boardRepository.findAll(page);
+
 		
 		for (Board board : boards) {
 			String preview = HtmlParser.getContentPreview(board.getContent());
