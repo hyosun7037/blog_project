@@ -72,7 +72,7 @@ public class UsersRepository {
 				user.setUsername(rs.getString("username"));
 				user.setEmail(rs.getString("email"));
 				user.setAddress(rs.getString("address"));
-				user.setUserprofile(rs.getString("userProfile"));
+				user.setUserProfile(rs.getString("userProfile"));
 				user.setUserRole(rs.getString("userRole"));
 				user.setCreateDate(rs.getTimestamp("createDate"));
 			}
@@ -113,6 +113,28 @@ public class UsersRepository {
 		return -1; // 실패시
 	}
 
+	
+	//
+	public int update(int id, String userProfile) { // object 받기(안에 내용 다 받아야 하니까)
+		final String SQL = "UPDATE users SET userProfile=? WHERE id=?";
+		try {
+			conn = DBConn.getConnection(); // DB에 연결
+			pstmt = conn.prepareStatement(SQL);
+			// 물음표 완성하기
+			pstmt.setString(1, userProfile);
+			pstmt.setInt(2, id);
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(TAG + "update : " + e.getMessage());
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return -1; // 실패시
+	}
+	
+	
 	// 회원정보 수정
 	public int update(Users user) { // object 받기(안에 내용 다 받아야 하니까)
 		final String SQL = "UPDATE users SET password=?, email=?, address=? WHERE id=?";
@@ -190,6 +212,7 @@ public class UsersRepository {
 						.email(rs.getString("email"))
 						.address(rs.getString("address"))
 						.createDate(rs.getTimestamp("createDate"))
+						.userProfile(rs.getString("userProfile"))
 						.build();
 			}
 			return user;

@@ -26,8 +26,8 @@
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-			<ul class="navbar-nav">
+		<div class="justify-content-between collapse navbar-collapse " id="collapsibleNavbar">
+			<ul class="navbar-nav " >
 			<!-- else가 필요하면 c:choose문법을 사용 -->
 			<c:choose>
 				<c:when test="${empty sessionScope.principal}">
@@ -42,6 +42,19 @@
 				</c:otherwise>
 			</c:choose>
 			</ul>
+			
+			<ul class="navbar-nav"> <!-- 로그인시 나오도록 -->
+				<c:if test="${not empty sessionScope.principal}">
+				<li class="nav-item">
+					<a href="/blog/user?cmd=profileUpload">
+					<img style = "border-radius:50%;" onerror="this.src ='/blog/image/userProfile.png'" 
+					src="${sessionScope.principal.userProfile}"  width="40px" height="40px" />
+					</a>
+				</li>
+				</c:if>
+				
+			</ul>
+			
 		</div>
 	</nav>
 	<br>

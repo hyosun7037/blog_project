@@ -21,19 +21,20 @@ public class BoardHomeAction implements Action {
 		
 		//1. DB 연결해서 Board 목록 다 불러와서
 		BoardRepository boardRepository = BoardRepository.getInstance();
-		List<Board> boards = boardRepository.findAll(page);
+		List<Board> boards = boardRepository.findAll(page); // 게시글 3개씩 나오도록 한 리스트 모음
 
 		
 		for (Board board : boards) {
-			String preview = HtmlParser.getContentPreview(board.getContent());
+			String preview = HtmlParser.getContentPreview(board.getContent()); 
+			//preview는 HtmlParser로 파싱해준 미리보기 값
+			//getContentPreview의 인수로 board의 content를 넣어준다.
 			board.setContent(preview);
 		}
-
 		request.setAttribute("boards", boards);
 		
 
-		int count = boardRepository.count();
-		int lastPage = (count-1)/3;
+		int count = boardRepository.count(); // 게시글 갯수 세기
+		int lastPage = (count-1)/3; // 마지막 페이지 계산
 		request.setAttribute("lastPage", lastPage);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("home.jsp");

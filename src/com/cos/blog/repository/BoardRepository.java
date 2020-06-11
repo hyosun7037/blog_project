@@ -208,14 +208,14 @@ public class BoardRepository {
 
 	
 	///// 여기 페이지 나누는 쿼리 추가
-	public List<Board> findAll(int page) { // object 받기(안에 내용 다 받아야 하니까)
+	public List<Board> findAll(int page) { // 가변 배열이니까 List<>사용, object 받기(안에 내용 다 받아야 하니까)
 		StringBuilder sb = new StringBuilder(); // 스트링 배열로 받는다.String으로 받으면 너무 길어지기 때문에 
-		sb.append("SELECT /*+ INDEX_DESC(BOARD SYS_C008316)*/id, ");
+		sb.append("SELECT /*+ INDEX_DESC(BOARD SYS_C008316)*/id, "); // append로 값을 넣어준다. 
 		sb.append("userId, title, content, readCount, createDate ");
 		sb.append("FROM board ");
-		sb.append("OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY");
+		sb.append("OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY"); // 3개만 출력될 수 있도록 지정
 		
-		final String SQL = sb.toString();
+		final String SQL = sb.toString(); // String형으로 형변환
 		List<Board> boards = new ArrayList<>();
 		
 		try {
@@ -233,7 +233,7 @@ public class BoardRepository {
 						rs.getInt("readCount"),
 						rs.getTimestamp("createDate")
 						);
-				boards.add(board);
+				boards.add(board); // 읽은 값을 boards에 넣어준다.
 						
 			}
 			return boards;

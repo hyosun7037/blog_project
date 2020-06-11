@@ -1,17 +1,15 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="com.cos.blog.model.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@include file="include/nav.jsp"%>
 
-
-<div class="container">
+<div class="container"> 
 
 	<div class="col-md-12 m-2">
-		<form class="form-inline justify-content-end" action="/blog/board?cmd=search"  method="get">
+		<form class="form-inline justify-content-start" action="/blog/board?cmd=search"  method="get">
 	    	<input class="form-control mr-sm-2" type="hidden" name="cmd" value="search">
 	    	<input class="form-control mr-sm-2" type="hidden" name="page" value="0">
-	    	<input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Search">
+	    	<input class="form-control mr-sm-2 input-lg" type="text" name="keyword" placeholder="Search">
 	    	<button class="btn btn-primary" type="submit">검색</button>
 	  </form>
 	</div>

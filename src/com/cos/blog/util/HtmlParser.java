@@ -7,6 +7,7 @@ import org.jsoup.select.Elements;
 
 public class HtmlParser {
 	
+	// 유투브 파싱
 	public static String getContentYoutude(String content) {
 		Document doc = Jsoup.parse(content); // html 구조를 만들어준다.Document 타입이 html
 		System.out.println("doc =" + doc);
@@ -41,13 +42,14 @@ public class HtmlParser {
 		return doc.toString();
 	}
 	
-	public static String getContentPreview(String content) {
+	// 게시글 미리보기 
+	public static String getContentPreview(String content) { 
 		
-		Document doc = Jsoup.parse(content);
+		Document doc = Jsoup.parse(content); // 들어오는 content를 Jsop의 내장함수 parse를 통해서 파싱해줌
 		Elements pTags = doc.select("p");
 		
 		for (Element pTag : pTags) {
-			String text = pTag.text();
+			String text = pTag.text(); //p태그에 들어가 있는 텍스트를 넣어준다.
 			if(text.length() > 0) {
 				if(text.length() < 11) {
 					return pTag.text();

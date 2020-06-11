@@ -18,6 +18,7 @@ public class BoardSearchAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 유효성 검사
 		if(
 			request.getParameter("keyword") == null ||
 			request.getParameter("keyword").equals("")) 
