@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cos.blog.db.DBConn;
+import com.cos.blog.dto.ReplyResponseDto;
 import com.cos.blog.model.Board;
 import com.cos.blog.model.Reply;
 import com.cos.blog.model.Users;
@@ -78,17 +79,41 @@ public class ReplyRepository {
 		return -1; // 실패시
 	}
 
-	// 회원정보 다 찾기
-	public List<Reply> findAll() { // object 받기(안에 내용 다 받아야 하니까)
-		final String SQL = "";
-		List<Reply> replys = new ArrayList<>();
+
+	public List<ReplyResponseDto> findAll(int boardId) { // object 받기(안에 내용 다 받아야 하니까)
+		StringBuffer  sb = new StringBuffer();
+		sb.append("select r.id, r.userId, r.boardId, r.content, r.createDate, ");
+		sb.append("u.username, u.userprofile ");
+		sb.append("from reply r INNER JOIN users u ");
+		sb.append("ON r.userId = u.id ");
+		sb.append("WHERE boardId = ? ");
+		sb.append("ORDER BY r.id DESC ");
+		final String SQL = sb.toString();
+		List<ReplyResponseDto> replyDtos = new ArrayList<>();
+		
 		try {
 			conn = DBConn.getConnection(); // DB에 연결
 			pstmt = conn.prepareStatement(SQL);
 			// 물음표 완성하기
-
+			pstmt.setInt(1, boardId); // 물음표완성
+			rs = pstmt.executeQuery();
 			// while 돌려서 rs -> java오브젝트에 집어넣기
-			return replys;
+			while(rs.next()) {
+				Reply reply = Reply.builder()
+								   .id(rs.getInt(1))
+								   .userId(rs.getInt(2))
+								   .boardId(rs.getInt(3))
+								   .content(rs.getString(4))
+								   .createDate(rs.getTimestamp(5))
+								   .build();
+								   ReplyResponseDto replyDto = ReplyResponseDto.builder()
+										   								  .reply(reply)
+										   								  .username(rs.getString(6))
+										   								  .userProfile(rs.getString(7))
+										   								  .build();
+								   replyDtos.add(replyDto);
+			}
+			return replyDtos;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println(TAG + "findAll : " + e.getMessage());

@@ -1,6 +1,6 @@
 package com.cos.blog.dto;
 
-import com.cos.blog.model.Board;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class DetailResponseDto {
-	private Board board;
-	private String username;
+	private BoardResponseDto boardDto;	// 안에 모든게 들어가있음
+	private List<ReplyResponseDto> replyDtos;
 }
 

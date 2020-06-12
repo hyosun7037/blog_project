@@ -22,11 +22,13 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="index.jsp">Blog</a>
+		<a class="navbar-brand" href="index.jsp">Sunny Blog</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+		
 		<div class="justify-content-between collapse navbar-collapse " id="collapsibleNavbar">
+		
 			<ul class="navbar-nav " >
 			<!-- else가 필요하면 c:choose문법을 사용 -->
 			<c:choose>
@@ -52,7 +54,6 @@
 					</a>
 				</li>
 				</c:if>
-				
 			</ul>
 			
 		</div>
