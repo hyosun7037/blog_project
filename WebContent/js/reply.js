@@ -6,6 +6,7 @@ function replyDelete(replyId){
       data: "replyId="+replyId,
       contentType: "application/x-www-form-urlencoded; charset=utf-8",
       dataType: "text"
+    	  
    }).done(function(result){
 	   if(result == "1"){
 		   alert("댓글 삭제 성공");
@@ -66,7 +67,7 @@ function renderReplyList(replyDtos){
 }
 
 function makeReplyItem(replyDto){
-   var replyItem = `<li class="media">`;
+   var replyItem = `<li id="reply-${replyDto.reply.id}" class="media">`;
    if(replyDto.userProfile == null){
       replyItem += `<img src="/blog/image/userProfile.png" class="img-circle">`;   
    }else{
@@ -77,6 +78,11 @@ function makeReplyItem(replyDto){
    replyItem += `<strong class="text-primary">${replyDto.username}</strong>`;
    replyItem += `<p>${replyDto.reply.content}</p>`;
    replyItem += `</div>`;
+   // 휴지통 추가 시작
+	replyItem += `<div class="m-2">`;
+	replyItem += `<i onclick="replyDelete(${replyDto.reply.id})" class="material-icons i__btn">delete</i>`;
+	replyItem += `</div>`;
+	// 휴지통 추가 끝
    replyItem += `</li>`;
    return replyItem;
 }
