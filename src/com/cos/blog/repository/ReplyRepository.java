@@ -30,11 +30,14 @@ public class ReplyRepository {
 
 	// 글쓰기
 	public int save(Reply reply) { // object 받기(안에 내용 다 받아야 하니까)
-		final String SQL = "";
+		final String SQL = "INSERT INTO reply(id, boardId, userId, content, createDate) VALUES(reply_seq.nextval, ?, ?, ?, sysdate)";
 		try {
 			conn = DBConn.getConnection(); // DB에 연결
 			pstmt = conn.prepareStatement(SQL);
 			// 물음표 완성하기
+			pstmt.setInt(1, reply.getBoardId());
+			pstmt.setInt(2, reply.getUserId());
+			pstmt.setString(3, reply.getContent());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -64,11 +67,12 @@ public class ReplyRepository {
 
 	// 회원정보 삭제
 	public int deleteById(int id) { // object 받기(안에 내용 다 받아야 하니까)
-		final String SQL = "";
+		final String SQL = "DELETE FROM reply WHERE id = ?";
 		try {
 			conn = DBConn.getConnection(); // DB에 연결
 			pstmt = conn.prepareStatement(SQL);
 			// 물음표 완성하기
+			pstmt.setInt(1, id);
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
