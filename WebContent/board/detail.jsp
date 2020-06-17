@@ -6,7 +6,6 @@
 <div class="container">
 	<%@ include file="../include/goBack.jsp"%>
 
-
 	<c:if test="${sessionScope.principal.id == detailDto.boardDto.board.userId}">
 		<a href="/blog/board?cmd=update&id=${detailDto.boardDto.board.id}" class="btn btn-warning">수정</a>
 		<button class="btn btn-danger" onclick="deleteById(${detailDto.boardDto.board.id})">삭제</button>

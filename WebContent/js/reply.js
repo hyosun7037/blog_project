@@ -3,7 +3,7 @@ function replyDelete(replyId){
    $.ajax({
       type: "post",
       url: "/blog/reply?cmd=deleteProc",
-      data: "replyId="+replyId,
+      data: "replyId="+replyId, // 이 방식으로 넘겨주면 x-www-form-urlencoded로 보낼 수 있음
       contentType: "application/x-www-form-urlencoded; charset=utf-8",
       dataType: "text"
     	  
@@ -80,7 +80,7 @@ function makeReplyItem(replyDto){
    replyItem += `</div>`;
    // 휴지통 추가 시작
 	replyItem += `<div class="m-2">`;
-	replyItem += `<i onclick="replyDelete(${replyDto.reply.id})" class="material-icons i__btn">delete</i>`;
+	replyItem += `<i onclick="replyDelete(${replyDto.reply.id})" class="material-icons i__btn" style="cursor:pointer">delete</i>`;
 	replyItem += `</div>`;
 	// 휴지통 추가 끝
    replyItem += `</li>`;

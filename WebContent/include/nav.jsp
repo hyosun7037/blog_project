@@ -10,6 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="/blog/css/styles.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -28,9 +29,9 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		
-		<div class="justify-content-between collapse navbar-collapse " id="collapsibleNavbar">
+		<div class="justify-content-end collapse navbar-collapse " id="collapsibleNavbar">
 		
-			<ul class="navbar-nav " >
+			<ul class="navbar-nav">
 			<!-- else가 필요하면 c:choose문법을 사용 -->
 			<c:choose>
 				<c:when test="${empty sessionScope.principal}">
@@ -50,7 +51,7 @@
 				<c:if test="${not empty sessionScope.principal}">
 				<li class="nav-item">
 					<a href="/blog/user?cmd=profileUpload">
-					<img style = "border-radius:50%;" onerror="this.src ='/blog/image/userProfile.png'" 
+					<img style = "margin-left:10px; border-radius:50%;" onerror="this.src ='/blog/image/userProfile.png'" 
 					src="${sessionScope.principal.userProfile}"  width="40px" height="40px" />
 					</a>
 				</li>
@@ -59,4 +60,5 @@
 			
 		</div>
 	</nav>
-	<br>
+<br />
+<br />
