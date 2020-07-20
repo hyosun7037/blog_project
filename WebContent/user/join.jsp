@@ -8,8 +8,11 @@
 	<form action="/blog/user?cmd=joinProc" method="post" class="was-validated" onSubmit ="return validate()">
 		<div class="form-group">
 			<label for="username">Username:</label> 
+			
+			<div style="display:flex; justify-content:space-between; align-items:center;">
+			<input style="width:90on%;" type="text" class="form-control" id="username" placeholder="Enter username" name="username" required>
 			<button type="button" class="btn btn-warning float-right" onClick="usernameCheck('${principal.username}')">중복확인</button>
-			<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required>
+			</div>
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>
 		</div>
@@ -29,11 +32,16 @@
 		</div>
 
 		<div class="form-group">
+			<div>
 			<label for="address">Address:</label> 
-			<button type="button" class="btn btn-info" onClick="goPopup();">검색</button>
+			</div>
+			
+			<div style="display:flex; justify-content:space-between; align-items:center;">
 			<input type="text"
 				class="form-control" id="address" placeholder="Enter address"
-				name="address" required readonly>
+				name="address" style="width:93%;" required readonly>
+			<button type="button" class="btn btn-info" onClick="goPopup();">검색</button>
+			</div>
 				
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>

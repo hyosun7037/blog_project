@@ -14,7 +14,7 @@
 
 function init(){
 	var url = location.href; // 내주소
-	var confmKey = "devU01TX0FVVEgyMDIwMDYwMjA5NDkwMjEwOTgyMDE=";
+	var confmKey = "devU01TX0FVVEgyMDIwMDcwMzEyNDgxNjEwOTkyNDg=";
 	var resultType = "4";
 	var inputYn= "<%=inputYn%>";
 	if(inputYn != "Y"){

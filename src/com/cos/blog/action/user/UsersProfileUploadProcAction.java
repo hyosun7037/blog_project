@@ -41,7 +41,7 @@ public class UsersProfileUploadProcAction implements Action {
             Users principal = usersRepository.findById(id);
             session.setAttribute("principal", principal);
             
-            Script.href("사진 변경완료","/blog/index.jsp" , response);
+            Script.href("사진 변경완료","/monami/index.jsp" , response);
          } else {
             Script.back("사진변경실패", response);
          }

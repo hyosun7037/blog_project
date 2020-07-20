@@ -168,7 +168,7 @@ public class BoardRepository {
 		sb.append("userId, title, content, readCount, createDate ");
 		sb.append("FROM board ");
 		sb.append("WHERE title like ? OR content like ? "); // 여기서는 % 안먹음
-		sb.append("OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY");
+		sb.append("OFFSET ? ROWS FETCH NEXT 3  ROWS ONLY");
 		System.out.println(sb.toString()); // 테스트용
 		
 		final String SQL = sb.toString();
